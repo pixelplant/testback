@@ -18,16 +18,16 @@ $journey->addCards(
             'Stockholm',
             'New York JFK',
             'SK22',
-            '22',
             '7B',
+            '22',
             'Baggage will we automatically transferred from your last leg.'
         ),
         new AirplaneCard(
             'Gerona Airport',
             'Stockholm',
             'SK455',
-            '45B',
             '3A',
+            '45B',
             'Baggage drop at ticket counter 344.'
         ),
         new TrainCard(

@@ -15,8 +15,8 @@ Going from Madrid to New York JFK, using 4 transportation cards
 ----------------
 1. Take the train 78A from Madrid to Barcelona. Sit in seat 45B.
 2. Take the bus from Barcelona to Gerona Airport. No seat assignment.
-3. From Gerona Airport, take flight SK455 to Stockholm. Gate 3A, seat 45B. Baggage drop at ticket counter 344.
-4. From Stockholm, take flight SK22 to New York JFK. Gate 7B, seat 22. Baggage will we automatically transferred from your last leg.
+3. From Gerona Airport, take flight SK455 to Stockholm. Gate 45B, seat 3A. Baggage drop at ticket counter 344.
+4. From Stockholm, take flight SK22 to New York JFK. Gate 22, seat 7B. Baggage will we automatically transferred from your last leg.
 ----------------
 You have arrived at your final destination.
 ```
