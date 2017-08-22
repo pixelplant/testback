@@ -44,7 +44,7 @@ $system->addCards(
 $orderedCards = $system->calculateJourney();
 
 if (empty($orderedCards)) {
-    echo 'Route is invalid or has more than 1 final starting/destination points';
+    echo "Route is invalid or has more than 1 final starting/destination points\n";
 } else {
     echo sprintf(
         "\nGoing from %s to %s, using %s transportation cards\n----------------\n",
