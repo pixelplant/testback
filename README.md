@@ -11,13 +11,12 @@ In order to execute the code, run it in the shell/cli (command line), inside the
 
 You should get an output like this one:
 ```
-Going from Paris 3eme arrondisement to Singapore downtown, using 5 transportation cards
+Going from Madrid to New York JFK, using 4 transportation cards
 ----------------
-Take the bus from Paris 3eme arrondisement to Paris airport, No seat assignment.
-Take train TGV 21A from Paris airport to Geneva Cointrin. Sit in seat 11B.
-From Geneva Cointrin, take flight SW201 to Zurich, 30B.
-From Zurich, take flight SW900 to Singapore, 15B.
-Take train REG101 from Singapore to Singapore downtown. No seat assignment.
+1. Take the train 78A from Madrid to Barcelona. Sit in seat 45B.
+2. Take the bus from Barcelona to Gerona Airport. No seat assignment.
+3. From Gerona Airport, take flight SK455 to Stockholm. Gate 3A, seat 45B. Baggage drop at ticket counter 344.
+4. From Stockholm, take flight SK22 to New York JFK. Gate 7B, seat 22. Baggage will we automatically transferred from your last leg.
 ----------------
 You have arrived at your final destination.
 ```
@@ -27,5 +26,10 @@ You are free to modify any of the 2 files in order to change the input.
 ## Classes information
 
 The 2 main classes are:
-* `TransportationCard` - holds all the information of a transportation card, as "from" and "to" destinations, type of transportation, seat number, etc
-* `TransportationSystem` - gets as input the transportation cards and calculates the journey, returning the correct ordered list of cards, or an empty array if the route is not valid. (see method `calculateJourney`).
+* `Transportation\Card` - Abstract base class for any type of transportation card. Holds an abstract method called "formatRoute" that formats the displayed information according to the type of transportation method.
+* `Transportation\BusCard` - Transportation card for Buses
+* `Transportation\TrainCard` - Transportation card for Trains
+* `Transportation\AirplaneCard` - Transportation card for Airplanes
+* `Transportation\Journey` - gets as input the transportation cards and calculates the journey, returning the correct ordered list of cards, or an empty array if the route is not valid. (see method `calculate`).
+
+![Diagram](docs/diagram.png)

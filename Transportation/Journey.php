@@ -1,10 +1,8 @@
 <?php
 
-namespace BackendTest;
+namespace BackendTest\Transportation;
 
-require_once 'TransportationCard.php';
-
-class TransportationSystem
+class Journey
 {
     /**
      * Transportation Cards array
@@ -64,7 +62,7 @@ class TransportationSystem
     /**
      * Add one transportation card at a time
      *
-     * @param TransportationCard $card
+     * @param Card $card
      */
     public function addCard($card)
     {
@@ -118,7 +116,7 @@ class TransportationSystem
      *
      * @return array
      */
-    public function calculateJourney()
+    public function calculate()
     {
         // since we've cached our destinations, we can easily see which is our starting point and our destination
         // the diff between these 2 arrays should always return only 1 element, otherwise we have multiple unconnected
@@ -168,4 +166,3 @@ class TransportationSystem
         return $this->destinationPoints;
     }
 }
-

@@ -1,39 +1,44 @@
 <?php
 
-require_once 'TransportationCard.php';
-require_once 'TransportationSystem.php';
+require_once 'Transportation/Journey.php';
+require_once 'Transportation/Card.php';
+require_once 'Transportation/BusCard.php';
+require_once 'Transportation/TrainCard.php';
+require_once 'Transportation/AirplaneCard.php';
 
-use BackendTest\TransportationSystem;
-use BackendTest\TransportationCard;
+use BackendTest\Transportation\Journey;
+use BackendTest\Transportation\AirplaneCard;
+use BackendTest\Transportation\BusCard;
+use BackendTest\Transportation\TrainCard;
 
-$system = new TransportationSystem();
-$system->addCards(
+$journey = new Journey();
+$journey->addCards(
     [
-        new TransportationCard(
+        new AirplaneCard(
             'Stockholm',
             'New York JFK',
-            TransportationCard::TRANSPORTATION_AIRPLANE,
             'SK22',
-            'Gate 22, seat 7B'
+            '22',
+            '7B',
+            'Baggage will we automatically transferred from your last leg.'
         ),
-        new TransportationCard(
+        new AirplaneCard(
             'Gerona Airport',
             'Stockholm',
-            TransportationCard::TRANSPORTATION_AIRPLANE,
             'SK455',
-            'Gate 45B, seat 3A'
+            '45B',
+            '3A',
+            'Baggage drop at ticket counter 344.'
         ),
-        new TransportationCard(
+        new TrainCard(
             'Madrid',
             'Barcelona',
-            TransportationCard::TRANSPORTATION_TRAIN,
             '78A',
             '45B'
         ),
-        new TransportationCard(
+        new BusCard(
             'Barcelona',
             'Gerona Airport',
-            TransportationCard::TRANSPORTATION_BUS,
             '',
             null
         )
@@ -41,24 +46,24 @@ $system->addCards(
 );
 
 // order the transportation cards
-$orderedCards = $system->calculateJourney();
+$orderedCards = $journey->calculate();
 
 if (empty($orderedCards)) {
     echo "Route is invalid or has more than 1 final starting/destination points\n";
 } else {
     echo sprintf(
         "\nGoing from %s to %s, using %s transportation cards\n----------------\n",
-        $system->getStart(),
-        $system->getEnd(),
+        $journey->getStart(),
+        $journey->getEnd(),
         sizeof($orderedCards)
     );
-    foreach ($orderedCards as $card) {
-        echo $card->getFormattedRoute() . PHP_EOL;
+    foreach ($orderedCards as $order => $card) {
+        echo ($order + 1) . '. ' . $card->formatRoute() . PHP_EOL;
     }
     echo sprintf(
         "----------------\nYou have arrived at your final destination.\n\n",
-        $system->getStart(),
-        $system->getEnd(),
+        $journey->getStart(),
+        $journey->getEnd(),
         sizeof($orderedCards)
     );
 }

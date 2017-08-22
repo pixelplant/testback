@@ -1,71 +1,71 @@
 <?php
 
-require_once 'TransportationCard.php';
-require_once 'TransportationSystem.php';
+require_once 'Transportation/Journey.php';
+require_once 'Transportation/Card.php';
+require_once 'Transportation/BusCard.php';
+require_once 'Transportation/TrainCard.php';
+require_once 'Transportation/AirplaneCard.php';
 
-use BackendTest\TransportationSystem;
-use BackendTest\TransportationCard;
+use BackendTest\Transportation\Journey;
+use BackendTest\Transportation\AirplaneCard;
+use BackendTest\Transportation\BusCard;
+use BackendTest\Transportation\TrainCard;
 
-$system = new TransportationSystem();
-$system->addCards(
+$journey = new Journey();
+$journey->addCards(
     [
-        new TransportationCard(
+        new TrainCard(
             'Paris airport',
             'Geneva Cointrin',
-            TransportationCard::TRANSPORTATION_TRAIN,
             'TGV 21A',
             '11B'
         ),
-        new TransportationCard(
+        new AirplaneCard(
             'Zurich',
             'Singapore',
-            TransportationCard::TRANSPORTATION_AIRPLANE,
             'SW900',
-            '15B'
+            '15B',
+            '12'
         ),
-        new TransportationCard(
+        new AirplaneCard(
             'Geneva Cointrin',
             'Zurich',
-            TransportationCard::TRANSPORTATION_AIRPLANE,
             'SW201',
-            '30B'
+            '20B',
+            '11',
+            'Baggage drop at ticket counter 10.'
         ),
-        new TransportationCard(
+        new BusCard(
             'Paris 3eme arrondisement',
-            'Paris airport',
-            TransportationCard::TRANSPORTATION_BUS,
-            null,
-            null
+            'Paris airport'
         ),
-        new TransportationCard(
+        new TrainCard(
             'Singapore',
             'Singapore downtown',
-            TransportationCard::TRANSPORTATION_TRAIN,
-            'REG101',
-            null
+            'REG101'
         )
     ]
 );
 
 // order the transportation cards
-$orderedCards = $system->calculateJourney();
+$orderedCards = $journey->calculate();
 
 if (empty($orderedCards)) {
     echo "Route is invalid or has more than 1 final starting/destination points\n";
 } else {
     echo sprintf(
         "\nGoing from %s to %s, using %s transportation cards\n----------------\n",
-        $system->getStart(),
-        $system->getEnd(),
+        $journey->getStart(),
+        $journey->getEnd(),
         sizeof($orderedCards)
     );
-    foreach ($orderedCards as $card) {
-        echo $card->getFormattedRoute() . PHP_EOL;
+    foreach ($orderedCards as $order => $card) {
+        echo ($order + 1) . '. ' . $card->formatRoute() . PHP_EOL;
     }
     echo sprintf(
         "----------------\nYou have arrived at your final destination.\n\n",
-        $system->getStart(),
-        $system->getEnd(),
+        $journey->getStart(),
+        $journey->getEnd(),
         sizeof($orderedCards)
     );
 }
