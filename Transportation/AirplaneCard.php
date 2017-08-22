@@ -20,11 +20,11 @@ class AirplaneCard extends Card
      * @param string $from
      * @param string $to
      * @param string $connection Connection name (Name of the bus, flight, etc)
-     * @param string $seat Seat name/number
-     * @param string $gate Gate name/number
+     * @param mixed  $seat Seat name/number
+     * @param mixed  $gate Gate name/number
      * @param string $baggage Baggage info, stored as a simple string
      */
-    public function __construct($from, $to, $connection, $seat, $gate, $baggage = '')
+    public function __construct($from, $to, $connection, $seat = null, $gate = null, $baggage = '')
     {
         parent::__construct($from, $to, $connection, $seat);
         $this

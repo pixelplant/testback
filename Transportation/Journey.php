@@ -2,6 +2,13 @@
 
 namespace BackendTest\Transportation;
 
+/**
+ * Class Journey
+ *
+ * Holds all the cards and orders them
+ *
+ * @package BackendTest\Transportation
+ */
 class Journey
 {
     /**
@@ -12,14 +19,14 @@ class Journey
     protected $cards;
 
     /**
-     * List of all registered starting points
+     * Cached list of all registered starting points
      *
      * @var array
      */
     protected $startingPoints = [];
 
     /**
-     * List of all destination points
+     * Cached list of all destination points
      *
      * @var array
      */
